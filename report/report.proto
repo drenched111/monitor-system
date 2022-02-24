@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package report;
+
+option go_package = "../report";
+
+service ReportService{
+  rpc Report(ReportReq)returns(ReportRsp){}
+}
+
+message ReportReq{
+  int64 timestamp = 1;
+  string metric = 2;
+  map<string, string> dimensions = 3;
+  double value = 4;
+}
+
+message ReportRsp{
+  int32 code = 1;
+  string msg = 2;
+}

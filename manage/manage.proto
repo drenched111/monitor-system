@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "../manage";
+
+service ManageService{
+  rpc GetThreshold(ManageReq)returns(ManageRspList){}
+}
+
+message ManageReq{
+  string ip = 1;
+  string metric = 2;
+}
+
+message ManageRsp{
+  string ip = 1;
+  string metric = 2;
+  double threshold = 3; // 阈值
+  int32 alertType = 4; // 告警类型，提示、严重、致命
+}
+
+message ManageRspList{
+  repeated ManageRsp rspList = 1; // 返回多条阈值信息
+}
